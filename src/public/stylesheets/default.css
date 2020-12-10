@@ -4,6 +4,8 @@
 
 body.hide-cpu .container.cpu,
 body.hide-mem .container.mem,
+body.hide-heap .container.heap-size,
+body.hide-eventLoop .container.eventLoop,
 body.hide-load .container.load,
 body.hide-responseTime .container.responseTime,
 body.hide-rps .container.rps,
@@ -35,7 +37,7 @@ span {
   cursor: pointer;
   font-size: 10px;
   margin-left: 5px;
-  border: 1px solid #DDD;
+  border: 1px solid #ddd;
   padding: 3px 10px 4px 10px;
 }
 
@@ -111,11 +113,11 @@ canvas {
 }
 
 .health-check-status-container.ok {
-  background: #75D701;
+  background: #75d701;
 }
 
 .health-check-status-container.failed {
-  background: #E53A40;
+  background: #e53a40;
 }
 
 .health-check-status-container h1 {
@@ -139,7 +141,7 @@ canvas {
 }
 
 .status-code:before {
-  content: '';
+  content: "";
   display: inline-block;
   width: 8px;
   height: 8px;
@@ -148,7 +150,7 @@ canvas {
 }
 
 .status-code-2xx:before {
-  background-color: #75D701;
+  background-color: #75d701;
 }
 
 .status-code-3xx:before {
@@ -160,5 +162,5 @@ canvas {
 }
 
 .status-code-5xx:before {
-  background-color: #E53A40;
+  background-color: #e53a40;
 }

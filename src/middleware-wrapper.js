@@ -23,12 +23,13 @@ const middlewareWrapper = config => {
     port: validatedConfig.port,
     socketPath: validatedConfig.socketPath,
     bodyClasses,
+    refreshInterval: validatedConfig.refreshInterval || false,
     script: fs.readFileSync(path.join(__dirname, '/public/javascripts/app.js')),
     style: fs.readFileSync(path.join(__dirname, '/public/stylesheets/', validatedConfig.theme))
   };
 
   const htmlTmpl = fs
-    .readFileSync(path.join(__dirname, '/public/index.html'))
+    .readFileSync(path.join(__dirname, validatedConfig.template || '/public/index.html'))
     .toString();
 
   const render = Handlebars.compile(htmlTmpl);

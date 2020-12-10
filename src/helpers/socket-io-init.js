@@ -4,6 +4,7 @@
 
 const socketIo = require('socket.io');
 const gatherOsMetrics = require('./gather-os-metrics');
+const healthChecker = require('./health-checker');
 
 let io;
 
@@ -40,6 +41,7 @@ module.exports = (server, config) => {
       span.os = [];
       span.responses = [];
       const interval = setInterval(() => gatherOsMetrics(io, span), span.interval * 1000);
+    //   healthChecker();
 
       // Don't keep Node.js process up
       interval.unref();

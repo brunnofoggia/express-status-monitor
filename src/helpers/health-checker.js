@@ -36,17 +36,19 @@ module.exports = async healthChecks => {
 
   return allSettled(checkPromises).then(results => {
     results.forEach((result, index) => {
-      if (result.state === 'rejected') {
-        checkResults.push({
-          path: healthChecks[index].path,
-          status: 'failed'
-        });
-      } else {
-        checkResults.push({
-          path: healthChecks[index].path,
-          status: 'ok'
-        });
-      }
+        var d = healthChecks[index],
+            o = {
+            protocol: d.protocol,
+            host: d.host,
+            link: d.protocol + '://' + d.host + (d.port ? ':'+d.port : '') + d.path,
+            alias: d.alias || d.path,
+            port: d.port || false,
+            path: d.path
+        };
+
+        o.status = result.state === 'rejected' ? 'failed' : 'ok';
+
+        checkResults.push(o);
     });
 
     return checkResults;

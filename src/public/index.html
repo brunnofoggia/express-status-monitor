@@ -4,12 +4,13 @@
     <title>{{title}}</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" integrity="sha512-oc9+XSs1H243/FRN9Rw62Fn8EtxjEYWHXRvjS43YtueEewbS6ObfXcJNyohjHqVKFPoXXUxwc+q1K7Dee6vv9g==" crossorigin="anonymous" />
     <style>
       {{{style}}}
     </style>
   </head>
   <body class="{{bodyClasses}}">
-    <div class="content">
+    <div class="content w-100 p-5">
       <div class="header">
         <b>{{title}}</b>
         <div id="span-controls" class="span-controls"></div>
@@ -90,22 +91,27 @@
         </div>
       </div>
       <div class="container healthChecks">
-        {{#each healthCheckResults}}
-        <div class="health-check-row">
-          <div class="health-check-title-column">
-            <h5><a href="{{path}}">{{path}}</a></h5>
-          </div>
-          <div class="health-check-status-container {{status}}">
-            <h1>{{status}}</h1>
-          </div>
+        <div class="row">
+            {{#each healthCheckResults}}
+            <!-- <div class="health-check-row row"> -->
+                <div class="health-check-title-column col-12 col-lg-auto mb-2">
+                    <div class="health-check-status-container {{status}} col-auto rounded mr-2" style="width: auto;"></div>
+                    <h5><a href="{{link}}" title="{{path}}">{{alias}}</a></h5>
+                </div>
+            <!-- </div> -->
+            {{/each}}
         </div>
-        {{/each}}
       </div>
       <div class="footer">
         <p>Status page made by <a href="https://dynobase.dev">Dynobase</a> with &#9829; with Socket.io & Chart.js</p>
       </div>
     </div>
     <script>
+        {{refreshInterval}} && setTimeout(()=>{
+            console.log('reloading');
+            window.location.reload();
+        }, {{refreshInterval}});
+
       var port = '{{port}}';
       var socketPath = '{{socketPath}}';
       {{{script}}}

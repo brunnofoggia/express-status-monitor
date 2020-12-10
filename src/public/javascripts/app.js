@@ -148,8 +148,8 @@ var onSpanChange = function (e) {
 socket.on('esm_start', function (data) {
   // Remove last element of Array because it contains malformed responses data.
   // To keep consistency we also remove os data.
-  data[defaultSpan].responses.pop();
-  data[defaultSpan].os.pop();
+  data[defaultSpan].responses?.pop();
+  data[defaultSpan].os?.pop();
 
   var lastOsMetric = data[defaultSpan].os[data[defaultSpan].os.length - 1];
 
@@ -254,7 +254,6 @@ socket.on('esm_start', function (data) {
 });
 
 socket.on('esm_stats', function (data) {
-  console.log(data);
 
   if (
     data.retention === spans[defaultSpan].retention &&
