@@ -28,7 +28,9 @@ module.exports = async healthChecks => {
 
     checkPromises.push(axios({
       url: uri,
-      method: 'GET'
+      method: healthCheck.method || 'GET',
+      data: healthCheck.data || null,
+      headers: healthCheck.headers || {}
     }));
   });
 
